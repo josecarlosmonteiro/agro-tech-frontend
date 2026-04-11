@@ -1,3 +1,9 @@
-<div class="p-4">
-  <router-outlet />
+<div class="flex">
+  <div class="min-w-[20%]">
+    <app-sidenav />
+  </div>
+
+  <div class="h-screen p-4 grow overflow-auto">
+    <router-outlet />
+  </div>
 </div>

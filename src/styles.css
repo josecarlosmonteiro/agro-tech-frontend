@@ -1,7 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import 'tailwindcss';
+/* @import './material-theme.scss'; */
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
 
 button {
-  @apply cursor-pointer;
+  @apply p-2 px-4 rounded-full cursor-pointer duration-300 disabled:bg-gray-300 disabled:text-white disabled:cursor-default;
+}
+
+input {
+  @apply p-1 px-2 border-b-2 border-gray-200 bg-gray-100 focus:border-blue-500 duration-300 outline-none;
 }

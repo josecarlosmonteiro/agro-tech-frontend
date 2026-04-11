@@ -1,0 +1,17 @@
+{
+  "areas": [
+    {
+      "name": "Editado",
+      "location": "Funfou",
+      "size": 300,
+      "id": "yZ4p7snl8m4"
+    },
+    {
+      "name": "Nova área novamente",
+      "location": "testando mensagens",
+      "size": 300,
+      "id": "R-MVGsPZ4lE"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
+}

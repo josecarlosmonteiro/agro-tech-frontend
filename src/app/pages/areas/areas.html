@@ -1,1 +1,52 @@
-<p>areas works!</p>
+<div class="flex flex-col gap-4">
+  <h2 class="text-2xl">Informações complementares</h2>
+  <div class="grid grid-cols-3 gap-4">
+    <div class="p-4 rounded shadow bg-white text-gray-600 text-center">
+      <div class="text-sm font-semibold">Áreas cadastradas</div>
+      <div class="mt-2 text-xl font-semibold">
+        {{ areas().length }}
+      </div>
+    </div>
+    <div class="p-4 rounded shadow bg-white text-gray-600 text-center">
+      <div class="text-sm font-semibold">Área coberta</div>
+      <div class="mt-2 text-xl font-semibold">
+        {{ areas().reduce((acc, area) => acc + area.size, 0) }}m²
+      </div>
+    </div>
+  </div>
+
+  <br>
+
+  <div class="flex justify-between items-center">
+    <h2 class="text-2xl">Áreas cadastradas</h2>
+    <button type="button" class="bg-blue-500 text-white" (click)="openNewAreaFormDialog()">Add Área</button>
+  </div>
+
+  <div class="p-4 rounded bg-gray-200">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+      @for(area of areas(); track area.id) {
+      <div class="p-4 bg-white rounded shadow">
+        <div class="font-semibold text-md">{{ area.name }}</div>
+        <div class="mt-2 flex justify-between items-center font-semibold text-gray-500">
+          <div>
+            {{ area.location }}
+          </div>
+
+          <div>
+            {{ area.size }}m²
+          </div>
+        </div>
+
+        <div class="mt-4 flex gap-4">
+          <button class="w-full p-2 px-4 rounded-full text-red-500" (click)="openRemoveConfirmationAreaDialog(area)">
+            Remover
+          </button>
+          <button class="w-full p-2 px-4 rounded-full bg-blue-500 text-white" (click)="openUpdateAreaDialog(area)">
+            Editar
+          </button>
+        </div>
+      </div>
+      }
+    </div>
+  </div>
+</div>

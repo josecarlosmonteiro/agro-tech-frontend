@@ -1,8 +1,21 @@
-<div class="p-4 flex flex-col justify-between rounded bg-white shadow">
-  <h2 class="text-lg font-semibold mb-2">{{ area().name }}</h2>
+<!-- <div class="p-4 flex flex-col justify-between rounded bg-white shadow">
+  <mat-card-title>{{ area().name }}</mat-card-title>
 
   <div class="flex flex-col gap-1">
-    <p class="text-sm text-gray-500 font-semibold italic">{{ area().location }}</p>
+    <mat-card-subtitle class="text-gray-500">{{ area().location }}</mat-card-subtitle>
     <div class="text-sm font-semibold text-gray-500">{{ area().size }}m²</div>
   </div>
-</div>
+
+  <button mat-button>teste</button>
+</div> -->
+
+<mat-card appearance="outlined" class="w-full! shadow!">
+  <mat-card-header>
+    <mat-card-title class="text-lg! truncate">{{ area().name }}</mat-card-title>
+  </mat-card-header>
+  <br>
+  <mat-card-content>
+    <div>{{ area().size }}m²</div>
+    <div>{{ area().location }}</div>
+  </mat-card-content>
+</mat-card>
