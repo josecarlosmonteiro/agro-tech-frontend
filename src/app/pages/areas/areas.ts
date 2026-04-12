@@ -76,7 +76,8 @@ export class Areas implements OnInit {
       title: `Tem certeza?`,
       description: `Você está prestes a remover a área "${area.name}", localizada em "${area.location}" (${area.size}m²). Deseja prosseguir?`,
       isDanger: true,
-      onConfirm: () => this.deleteArea(area.id)
-    })
+    }).subscribe(result => {
+      if (result) this.deleteArea(area.id);
+    });
   }
 }

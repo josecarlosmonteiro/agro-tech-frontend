@@ -1,10 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogClose } from '@angular/material/dialog';
 import { TNotificationDialog } from '../../../types/shared/NotificationDialog';
 
 @Component({
   selector: 'app-success-dialog',
-  imports: [],
+  imports: [MatDialogClose],
   templateUrl: './success-dialog.html',
   styleUrl: './success-dialog.css',
 })

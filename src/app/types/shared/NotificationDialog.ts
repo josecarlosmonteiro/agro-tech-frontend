@@ -5,5 +5,4 @@ export type TNotificationDialog = {
 
 export type TConfirmationDialog = TNotificationDialog & {
   isDanger?: boolean;
-  onConfirm?: VoidFunction;
 }

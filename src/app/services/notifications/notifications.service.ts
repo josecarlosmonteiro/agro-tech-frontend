@@ -24,10 +24,8 @@ export class NotificationsService {
   }
 
   confirmation(data: TConfirmationDialog) {
-    this.dialog.open(ConfirmationDialog, {
+    return this.dialog.open(ConfirmationDialog, {
       data,
-    }).afterClosed().subscribe(confirm => {
-      if (confirm && data.onConfirm) data.onConfirm();
-    })
+    }).afterClosed()
   }
 }
