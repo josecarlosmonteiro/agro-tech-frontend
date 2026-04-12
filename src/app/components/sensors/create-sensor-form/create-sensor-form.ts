@@ -12,8 +12,10 @@ import { AreaService } from '../../../services/area/area.service';
   styleUrl: './create-sensor-form.css',
 })
 export class CreateSensorForm implements OnInit {
+  private dialogRef = inject(MatDialogRef<CreateSensorForm>);
   private fb = inject(FormBuilder);
   private areasService = inject(AreaService);
+  private notificationService = inject(NotificationsService);
 
   ngOnInit(): void {
     this.getAreas();
@@ -27,7 +29,6 @@ export class CreateSensorForm implements OnInit {
   }
 
   formGroup = this.fb.group({
-    name: ['', Validators.required],
     type: ['', SensorType],
     areaId: ['', Validators.required],
     min: [0, Validators.required],
@@ -35,6 +36,11 @@ export class CreateSensorForm implements OnInit {
   });
 
   submitForm() {
-    console.log(this.formGroup.value);
+    if (!this.formGroup.valid) {
+      this.notificationService.error({ title: 'Erro no preenchimento do formulário!' });
+      return;
+    }
+
+    this.dialogRef.close(this.formGroup.value);
   }
 }

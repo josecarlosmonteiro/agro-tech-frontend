@@ -7,12 +7,9 @@ export enum SensorType {
 
 export interface SensorModel {
   id: string;
-  name: string;
   type: SensorType;
   min: number;
   max: number;
-  position: string;
   areaId: string;
-  isActive: boolean;
   createdAt: string;
 }

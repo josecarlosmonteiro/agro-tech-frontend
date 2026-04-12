@@ -1,26 +1,37 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, computed, inject, OnInit } from '@angular/core';
 import { DialogControlService } from '../../services/dialog/dialog-control.service';
 import { CreateSensorForm } from '../../components/sensors/create-sensor-form/create-sensor-form';
 import { SensorService } from '../../services/sensors/sensor-service';
 import { SensorModel } from '../../models/sensor.model';
 import { NotificationsService } from '../../services/notifications/notifications.service';
 import { UpdateSensorForm } from '../../components/sensors/update-sensor-form/update-sensor-form';
+import { AreaService } from '../../services/area/area.service';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-sensors',
-  imports: [],
   templateUrl: './sensors.html',
   styleUrl: './sensors.css',
 })
 export class Sensors implements OnInit {
+  private areasService = inject(AreaService);
   private sensorsService = inject(SensorService);
   private dialogControlService = inject(DialogControlService);
   private notificationService = inject(NotificationsService);
 
-  public sensorsList = this.sensorsService.sensors();
+  private areas = this.areasService.areas;
+  private sensors = this.sensorsService.sensors;
+
+  areasWithSensors = computed(() => {
+    return this.areas().map(area => ({
+      ...area,
+      sensors: this.sensors().filter(el => el.areaId === area.id)
+    })).filter(el => el.sensors.length);
+  })
 
   ngOnInit(): void {
-    this.sensorsService.findAll();
+    this.areasService.findAll().subscribe();
+    this.sensorsService.findAll().subscribe();
   }
 
   newSensorDialog() {
@@ -58,13 +69,15 @@ export class Sensors implements OnInit {
     })
   }
 
-  updateSensorDialog() {
-    this.dialogControlService.open(UpdateSensorForm).subscribe((result: SensorModel) => {
-      if (result) this.updateSensor(result);
-    })
+  updateSensorDialog(sensor: SensorModel) {
+    this.dialogControlService
+      .open(UpdateSensorForm, { data: sensor })
+      .subscribe((result: SensorModel) => {
+        if (result) this.updateSensor(result);
+      })
   }
 
-  deleteSensor(sensorId: string) {
+  removeSensor(sensorId: string) {
     if (!sensorId) return this.notificationService.error({
       title: 'Erro no processamento de dados do sensor',
       description: 'Tente novamente mais tarde',
@@ -81,11 +94,11 @@ export class Sensors implements OnInit {
 
   removeSensorDialog(sensor: SensorModel) {
     this.notificationService.confirmation({
-      title: `Tem certeza de que deseja remover todos os sensores de "${sensor.name}"?`,
+      title: `Tem certeza de que deseja remover todos os sensores de "${sensor.type}"?`,
       description: 'Esta opção não pode ser desfeita!',
       isDanger: true,
-    }).subscribe((result: SensorModel) => {
-      if (result) this.deleteSensor(result.id);
+    }).subscribe((result: string) => {
+      if (result) this.removeSensor(sensor.id);
     })
   }
 }

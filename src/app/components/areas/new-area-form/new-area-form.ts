@@ -16,7 +16,6 @@ export class NewAreaForm {
 
   areaForm = this.fb.group({
     name: ['', Validators.required],
-    location: ['', Validators.required],
     size: [0, Validators.min(1)],
   });
 

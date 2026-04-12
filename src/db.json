@@ -1,5 +1,21 @@
 {
-  "areas": [],
+  "areas": [
+    {
+      "name": "Talhão de macieiras",
+      "size": 340,
+      "id": "eREwgFL4tlQ"
+    },
+    {
+      "name": "Horta - coentro",
+      "size": 80,
+      "id": "2mjih3AW1zo"
+    },
+    {
+      "name": "Plantação macaxeira",
+      "size": 180,
+      "id": "MEBZuW8bNHM"
+    }
+  ],
   "sensors": [],
   "$schema": "./node_modules/json-server/schema.json"
 }

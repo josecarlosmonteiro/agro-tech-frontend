@@ -14,16 +14,12 @@ export class SensorService {
   private notificationService = inject(NotificationsService);
 
   #sensorsSignal = signal<SensorModel[]>([]);
-  public sensors = this.#sensorsSignal.asReadonly;
+  public sensors = this.#sensorsSignal.asReadonly();
 
-  findAll(): void {
-    this.http.get<SensorModel[]>(this.url).subscribe({
-      next: result => this.#sensorsSignal.set(result),
-      error: err => this.notificationService.error({
-        title: 'Erro ao buscar dados de sensores',
-        description: err.message
-      })
-    })
+  findAll(): Observable<SensorModel[]> {
+    return this.http.get<SensorModel[]>(this.url).pipe(tap(result =>
+      this.#sensorsSignal.set(result)
+    ));
   }
 
   onCreateSensor(newSensor: SensorModel) {
