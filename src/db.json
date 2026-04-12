@@ -53,5 +53,6 @@
       "id": "gh0mqtAS6vo"
     }
   ],
+  "alerts": [],
   "$schema": "./node_modules/json-server/schema.json"
 }

@@ -6,8 +6,6 @@ export enum AlertStatus {
 export interface AlertModel {
   id: string;
   sensorId: string;
-  ruleId: string;
-  value: number;
   message: string;
   status: AlertStatus;
   triggeredAt: string;
