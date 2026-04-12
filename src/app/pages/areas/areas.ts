@@ -74,7 +74,7 @@ export class Areas implements OnInit {
   openRemoveConfirmationAreaDialog(area: AreaModel) {
     this.notificationService.confirmation({
       title: `Tem certeza?`,
-      description: `Você está prestes a remover a área "${area.name}", localizada em "${area.location}" (${area.size}m²). Deseja prosseguir?`,
+      description: `Você está prestes a remover a área "${area.name}", (${area.size}m²). Deseja prosseguir?`,
       isDanger: true,
     }).subscribe(result => {
       if (result) this.deleteArea(area.id);
