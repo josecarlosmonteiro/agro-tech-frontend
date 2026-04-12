@@ -2,11 +2,12 @@ import { Component, computed, inject, OnInit } from '@angular/core';
 import { DialogControlService } from '../../services/dialog/dialog-control.service';
 import { CreateSensorForm } from '../../components/sensors/create-sensor-form/create-sensor-form';
 import { SensorService } from '../../services/sensors/sensor-service';
-import { SensorModel } from '../../models/sensor.model';
+import { SensorModel, SensorType } from '../../models/sensor.model';
 import { NotificationsService } from '../../services/notifications/notifications.service';
 import { UpdateSensorForm } from '../../components/sensors/update-sensor-form/update-sensor-form';
 import { AreaService } from '../../services/area/area.service';
 import { JsonPipe } from '@angular/common';
+import { metricsMap } from '../../utils/metrics';
 
 @Component({
   selector: 'app-sensors',
@@ -21,6 +22,10 @@ export class Sensors implements OnInit {
 
   private areas = this.areasService.areas;
   private sensors = this.sensorsService.sensors;
+
+  getMetric(type: SensorType): string {
+    return metricsMap[type];
+  }
 
   areasWithSensors = computed(() => {
     return this.areas().map(area => ({
