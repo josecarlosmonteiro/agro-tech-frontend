@@ -92,10 +92,10 @@
       "id": "alrt-005",
       "sensorId": "gh0mqtAS6vo",
       "message": "Solo seco: umidade abaixo de 10%.",
-      "status": "ativo",
+      "status": "resolvido",
       "triggeredAt": "2026-04-12T11:15:00Z",
       "resolvedAt": null,
-      "justification": "Rega manual para prevenção de perdas"
+      "justification": "Solicitada rega manual para preservação das mudas"
     },
     {
       "id": "alrt-006",
