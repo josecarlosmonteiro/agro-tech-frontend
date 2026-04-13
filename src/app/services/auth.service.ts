@@ -3,12 +3,13 @@ import { inject, Injectable, signal } from '@angular/core';
 import { AuthLoginBody, AuthRegistrationBody, AuthResponse } from '../models/auth.model';
 import { Observable, tap } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
+import { baseUrl } from '../constants/url';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  private url = 'http://localhost:8080/auth';
+  private url = `${baseUrl}/auth`;
   private http = inject(HttpClient);
 
   #isLogged = signal<boolean>(false);
@@ -53,7 +54,7 @@ export class AuthService {
   }
 
   registration(data: AuthRegistrationBody): Observable<AuthResponse | null> {
-    return this.http.post<AuthResponse | null>(`${this.url}/cadastro`, data).pipe(
+    return this.http.post<AuthResponse | null>(`${this.url}/register`, data).pipe(
       tap(result => {
         if (result) this.onLogin(result.accessToken);
       }),
