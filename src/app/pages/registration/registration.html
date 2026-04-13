@@ -1,0 +1,76 @@
+<div class="h-screen w-full flex justify-center items-center bg-gray-200">
+  <form
+    [formGroup]="registrationForm"
+    (ngSubmit)="submitRegistraion()"
+  >
+    <div class="p-4 flex flex-col gap-4 rounded-lg bg-white shadow">
+      <h2 class="text-xl">Cadastro - Agro Tech</h2>
+
+      <div class="flex flex-col gap-1">
+        <label
+          for="name"
+          class="text-sm italic font-semibold text-gray-500"
+        >
+          Nome de usuário
+        </label>
+        <input
+          id="name"
+          type="text"
+          formControlName="name"
+          required
+        />
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label
+          for="email"
+          class="text-sm italic font-semibold text-gray-500"
+          >Email</label
+        >
+        <input
+          id="email"
+          type="email"
+          formControlName="email"
+          required
+        />
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label
+          for="password"
+          class="text-sm italic font-semibold text-gray-500"
+        >
+          Senha
+        </label>
+        <input
+          id="password"
+          type="password"
+          formControlName="password"
+          required
+        />
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label
+          for="confirmPassword"
+          class="text-sm italic font-semibold text-gray-500"
+        >
+          Confirmar senha
+        </label>
+        <input
+          id="confirmPassword"
+          type="password"
+          formControlName="confirmPassword"
+          required
+        />
+      </div>
+
+      <button
+        class="bg-blue-500 text-white"
+        type="submit"
+      >
+        Cadastrar
+      </button>
+    </div>
+  </form>
+</div>

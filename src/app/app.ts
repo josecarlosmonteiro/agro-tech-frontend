@@ -6,7 +6,7 @@ import { Sidenav } from './components/shared/sidenav/sidenav';
   selector: 'app-root',
   imports: [RouterOutlet, Sidenav],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
 })
 export class App {
   protected readonly title = signal('agro-tech-frontend');

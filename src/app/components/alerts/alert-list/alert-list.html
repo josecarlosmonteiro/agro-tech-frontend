@@ -1,0 +1,33 @@
+<div class="p-2 w-full rounded bg-black/5 overflow-auto truncate">
+  <table class="min-w-[70vw]">
+    <thead>
+      <tr class="text-xs">
+        <th></th>
+        <th class="p-1 pl-2 text-start">Mensagem</th>
+        <th class="p-1">Sensor</th>
+        <th class="p-1">Área</th>
+        <th class="p-1">Criado em</th>
+        <th class="p-1">Resolvido em</th>
+        <th class="p-1 pl-6 text-start">Justificativa</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (alert of alertList(); track alert.id) {
+        <tr
+          class="border-b-2 border-gray-300 hover:bg-gray-300 duration-300 cursor-pointer"
+          (click)="alertIsActive(alert)"
+        >
+          <td>{{ getStatusIcon(alert.status) }}</td>
+          <td class="p-2">{{ alert.message }}</td>
+          <td class="p-2 text-xs">{{ alert.sensorName }}</td>
+          <td class="p-2 text-xs">{{ alert.areaName }}</td>
+          <td class="p-2 text-xs">{{ alert.triggeredAt | date: 'shortDate' : 'BRL' }}</td>
+          <td class="p-2 text-xs">{{ alert.resolvedAt | date: 'shortDate' : 'BRL' }}</td>
+          <td class="p-2 pl-6">
+            {{ alert.justification }}
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

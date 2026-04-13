@@ -11,9 +11,8 @@ export class DialogControlService {
 
   public open<T, D = any, R = any>(
     component: ComponentType<T>,
-    config?: MatDialogConfig<D>): Observable<R | undefined> {
-    return this.dialog
-      .open(component, config)
-      .afterClosed()
+    config?: MatDialogConfig<D>,
+  ): Observable<R | undefined> {
+    return this.dialog.open(component, config).afterClosed();
   }
 }

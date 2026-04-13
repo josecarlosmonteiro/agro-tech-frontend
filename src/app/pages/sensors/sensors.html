@@ -1,44 +1,53 @@
 <div class="flex flex-col gap-4">
   <div class="flex justify-between items-center">
     <h2 class="text-2xl">Sensores Registrados</h2>
-    <button class="bg-blue-500 text-white" (click)="createSensorDialog()">Adicionar sensor</button>
+    <button
+      class="bg-blue-500 text-white"
+      (click)="createSensorDialog()"
+    >
+      Adicionar sensor
+    </button>
   </div>
 
   <div class="p-4 grid grid-cols-2 gap-4 bg-gray-200">
     @if (!areasWithSensors().length) {
-    <div class="col-span-3 text-center italic text-gray-600">
-      Ainda não há sensores cadastrados
-    </div>
+      <div class="col-span-3 text-center italic text-gray-600">
+        Ainda não há sensores cadastrados
+      </div>
     }
 
-    @for(area of areasWithSensors(); track area.id) {
-    <div class="h-fit p-4 rounded shadow bg-white">
-      <div class="text-lg">{{area.name}}</div>
+    @for (area of areasWithSensors(); track area.id) {
+      <div class="h-fit p-4 rounded shadow bg-white">
+        <div class="text-lg">{{ area.name }}</div>
 
-      <div class="mt-4 flex flex-col gap-2">
-        @for(sensor of area.sensors; track sensor.id) {
-        <div class="flex items-center">
-          <div
-            class="w-full p-2 rounded grid grid-cols-2 gap-4 items-center text-xs bg-black/5 hover:bg-black/10 duration-300 cursor-pointer"
-            (click)="updateSensorDialog(sensor)">
-            <div>
-              <div class="font-semibold italic text-gray-500">{{ sensor.type }}</div>
-              <div class="mt-1 flex gap-2 text-[10px]">
-                <div class="px-1 rounded-full bg-gray-300">min: {{ sensor.min }}</div>
-                <div class="px-1 rounded-full bg-gray-300">max: {{ sensor.max }}</div>
+        <div class="mt-4 flex flex-col gap-2">
+          @for (sensor of area.sensors; track sensor.id) {
+            <div class="flex items-center">
+              <div
+                class="w-full p-2 rounded grid grid-cols-2 gap-4 items-center text-xs bg-black/5 hover:bg-black/10 duration-300 cursor-pointer"
+                (click)="updateSensorDialog(sensor)"
+              >
+                <div>
+                  <div class="font-semibold italic text-gray-500">{{ sensor.type }}</div>
+                  <div class="mt-1 flex gap-2 text-[10px]">
+                    <div class="px-1 rounded-full bg-gray-300">min: {{ sensor.min }}</div>
+                    <div class="px-1 rounded-full bg-gray-300">max: {{ sensor.max }}</div>
+                  </div>
+                </div>
+
+                <h2 class="text-2xl text-end">00 {{ getMetric(sensor.type) }}</h2>
               </div>
+
+              <button
+                class="text-red-600 hover:underline"
+                (click)="removeSensorDialog(sensor)"
+              >
+                remover
+              </button>
             </div>
-
-            <h2 class="text-2xl text-end">00</h2>
-          </div>
-
-          <button class="text-red-600 hover:underline" (click)="removeSensorDialog(sensor)">
-            remover
-          </button>
+          }
         </div>
-        }
       </div>
-    </div>
     }
   </div>
 </div>

@@ -8,7 +8,6 @@ import { MatDialogRef, MatDialogClose, MAT_DIALOG_DATA } from '@angular/material
   templateUrl: './new-area-form.html',
   styleUrl: './new-area-form.css',
 })
-
 export class NewAreaForm {
   private dialogRef = inject(MatDialogRef<NewAreaForm>);
   private fb = inject(FormBuilder);
@@ -20,8 +19,7 @@ export class NewAreaForm {
   });
 
   onSubmit() {
-    if (!this.areaForm.valid)
-      return alert("Preencha os campos corretamente!");
+    if (!this.areaForm.valid) return alert('Preencha os campos corretamente!');
 
     this.dialogRef.close(this.areaForm.value);
   }

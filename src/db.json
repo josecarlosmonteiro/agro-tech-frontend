@@ -16,6 +16,127 @@
       "id": "MEBZuW8bNHM"
     }
   ],
-  "sensors": [],
+  "sensors": [
+    {
+      "type": "Umidade do ar",
+      "areaId": "eREwgFL4tlQ",
+      "min": 30,
+      "max": 75,
+      "id": "GE9Uv0wCEEc"
+    },
+    {
+      "type": "Temperatura",
+      "areaId": "eREwgFL4tlQ",
+      "min": 15,
+      "max": 45,
+      "id": "msaDY2f9pEI"
+    },
+    {
+      "type": "Luminosidade",
+      "areaId": "eREwgFL4tlQ",
+      "min": 3000,
+      "max": 4500,
+      "id": "stTMYvnPt9Q"
+    },
+    {
+      "type": "Temperatura",
+      "areaId": "2mjih3AW1zo",
+      "min": 20,
+      "max": 40,
+      "id": "jbZO-To-1tI"
+    },
+    {
+      "type": "Umidade do solo",
+      "areaId": "MEBZuW8bNHM",
+      "min": 10,
+      "max": 40,
+      "id": "gh0mqtAS6vo"
+    }
+  ],
+  "alerts": [
+    {
+      "id": "alrt-001",
+      "sensorId": "GE9Uv0wCEEc",
+      "message": "Umidade do ar crítica: nível abaixo de 30%.",
+      "status": "resolvido",
+      "triggeredAt": "2026-04-12T10:00:00Z",
+      "resolvedAt": null,
+      "justification": "teste"
+    },
+    {
+      "id": "alrt-002",
+      "sensorId": "msaDY2f9pEI",
+      "message": "Temperatura elevada detectada (48°C).",
+      "status": "resolvido",
+      "triggeredAt": "2026-04-12T10:30:00Z",
+      "resolvedAt": null,
+      "justification": "Solicitada rega manual para diminuir os possíveis danos nas mudas"
+    },
+    {
+      "id": "alrt-003",
+      "sensorId": "stTMYvnPt9Q",
+      "message": "Luminosidade fora do intervalo (4800 lux).",
+      "status": "ativo",
+      "triggeredAt": "2026-04-12T08:00:00Z",
+      "resolvedAt": "2026-04-12T09:30:00Z"
+    },
+    {
+      "id": "alrt-004",
+      "sensorId": "jbZO-To-1tI",
+      "message": "Temperatura instável no setor secundário.",
+      "status": "ativo",
+      "triggeredAt": "2026-04-12T11:00:00Z",
+      "resolvedAt": null
+    },
+    {
+      "id": "alrt-005",
+      "sensorId": "gh0mqtAS6vo",
+      "message": "Solo seco: umidade abaixo de 10%.",
+      "status": "resolvido",
+      "triggeredAt": "2026-04-12T11:15:00Z",
+      "resolvedAt": null,
+      "justification": "Solicitada rega manual para preservação das mudas"
+    },
+    {
+      "id": "alrt-006",
+      "sensorId": "GE9Uv0wCEEc",
+      "message": "Sensor de umidade reestabelecido.",
+      "status": "ativo",
+      "triggeredAt": "2026-04-11T20:00:00Z",
+      "resolvedAt": "2026-04-11T20:15:00Z"
+    },
+    {
+      "id": "alrt-007",
+      "sensorId": "msaDY2f9pEI",
+      "message": "Pico de calor detectado durante manutenção.",
+      "status": "ativo",
+      "triggeredAt": "2026-04-12T13:00:00Z",
+      "resolvedAt": "2026-04-12T13:45:00Z"
+    },
+    {
+      "id": "alrt-008",
+      "sensorId": "stTMYvnPt9Q",
+      "message": "Falta de luz natural detectada.",
+      "status": "ativo",
+      "triggeredAt": "2026-04-12T17:50:00Z",
+      "resolvedAt": null
+    },
+    {
+      "id": "alrt-009",
+      "sensorId": "jbZO-To-1tI",
+      "message": "Sensor de temperatura operando em modo de segurança.",
+      "status": "ativo",
+      "triggeredAt": "2026-04-12T18:20:00Z",
+      "resolvedAt": null
+    },
+    {
+      "id": "alrt-010",
+      "sensorId": "gh0mqtAS6vo",
+      "message": "Excesso de irrigação: umidade do solo em 45%.",
+      "status": "ativo",
+      "triggeredAt": "2026-04-12T07:00:00Z",
+      "resolvedAt": "2026-04-12T08:30:00Z"
+    }
+  ],
   "$schema": "./node_modules/json-server/schema.json"
 }

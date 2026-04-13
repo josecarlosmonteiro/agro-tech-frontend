@@ -1,40 +1,72 @@
-<form class="p-4" [formGroup]="formGroup" (ngSubmit)="submitForm()">
+<form
+  class="p-4"
+  [formGroup]="formGroup"
+  (ngSubmit)="submitForm()"
+>
   <div class="grid grid-cols-2 gap-4">
     <h2 class="col-span-2 text-lg">Cadastrar novo sensor</h2>
 
     <div class="flex flex-col gap-1">
       <label for="type">Tipo do sensor</label>
-      <select name="type" id="type" formControlName="type">
+      <select
+        name="type"
+        id="type"
+        formControlName="type"
+      >
         <option value=""></option>
-        @for(type of sensorTypeOptions; track type) {
-        <option [value]="type">{{type}}</option>
+        @for (type of sensorTypeOptions; track type) {
+          <option [value]="type">{{ type }}</option>
         }
       </select>
     </div>
 
     <div class="flex flex-col gap-1">
       <label for="areaId">Área</label>
-      <select name="areaId" id="areaId" formControlName="areaId">
+      <select
+        name="areaId"
+        id="areaId"
+        formControlName="areaId"
+      >
         <option value=""></option>
-        @for(area of areas(); track area.id) {
-        <option [value]="area.id">{{area.name}} - {{area.size}}m²</option>
+        @for (area of areas(); track area.id) {
+          <option [value]="area.id">{{ area.name }} - {{ area.size }}m²</option>
         }
       </select>
     </div>
 
     <div class="flex flex-col gap-1">
       <label for="min">Mínimo</label>
-      <input id="min" type="number" step="0.01" formControlName="min">
+      <input
+        id="min"
+        type="number"
+        step="0.01"
+        formControlName="min"
+      />
     </div>
 
     <div class="flex flex-col gap-1">
       <label for="max">Máximo</label>
-      <input id="max" type="number" step="0.01" formControlName="max">
+      <input
+        id="max"
+        type="number"
+        step="0.01"
+        formControlName="max"
+      />
     </div>
 
     <div class="col-span-2 flex justify-end gap-4">
-      <button type="button" mat-dialog-close>Cancelar</button>
-      <button type="submit" class="bg-blue-500 text-white">Confirmar</button>
+      <button
+        type="button"
+        mat-dialog-close
+      >
+        Cancelar
+      </button>
+      <button
+        type="submit"
+        class="bg-blue-500 text-white"
+      >
+        Confirmar
+      </button>
     </div>
   </div>
 </form>

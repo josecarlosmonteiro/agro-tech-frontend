@@ -2,8 +2,8 @@ function add<T>(list: T[], newItem: T) {
   return [...list, newItem];
 }
 
-function update<T>(list: T[], newItem: T, key: keyof T,) {
-  return list.map(el => el[key] === newItem[key] ? newItem : el);
+function update<T>(list: T[], newItem: T, key: keyof T) {
+  return list.map(el => (el[key] === newItem[key] ? newItem : el));
 }
 
 function remove<T>(list: T[], key: keyof T, value: any) {
@@ -14,4 +14,4 @@ export const listUtil = {
   add,
   update,
   remove,
-}
+};
