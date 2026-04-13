@@ -13,14 +13,14 @@ export class AuthService {
   private url = `${baseUrl}/auth`;
   private http = inject(HttpClient);
 
-  #isLogged = signal<boolean>(false);
+  #isLogged = signal<boolean>(this.verifyToken());
   public isLogged = computed(() => this.#isLogged());
   private router = inject(Router);
 
   private onLogin(token: string) {
     localStorage.setItem('token', token);
     this.#isLogged.set(true);
-    this.router.parseUrl('/areas');
+    this.router.navigateByUrl('/areas');
   }
 
   verifyToken(): boolean {
