@@ -37,18 +37,18 @@ export class AreaService {
     );
   }
 
-  create(data: Partial<AreaModel>): Observable<AreaModel> {
-    return this.http.post<AreaModel>(this.url, data).pipe(
+  create(data: Partial<AreaModel>): Observable<HttpResponseModel<AreaModel>> {
+    return this.http.post<HttpResponseModel<AreaModel>>(this.url, data).pipe(
       tap(result => {
-        this.onCreateArea(result);
+        this.onCreateArea(result.content);
       }),
     );
   }
 
-  update(data: AreaModel): Observable<AreaModel> {
-    return this.http.patch<AreaModel>(`${this.url}/${data.id}`, data).pipe(
+  update(data: AreaModel): Observable<HttpResponseModel<AreaModel>> {
+    return this.http.patch<HttpResponseModel<AreaModel>>(`${this.url}/${data.id}`, data).pipe(
       tap(result => {
-        this.onUpdateArea(result);
+        this.onUpdateArea(result.content);
       }),
     );
   }
