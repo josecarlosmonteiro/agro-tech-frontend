@@ -3,13 +3,14 @@ import { SensorModel } from '../../models/sensor.model';
 import { Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { listUtil } from '../../utils/lists';
+import { baseUrl } from '../../constants/url';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SensorService {
   private http = inject(HttpClient);
-  private url = 'http://localhost:8080/sensors';
+  private url = `${baseUrl}/sensors`;
 
   #sensorsSignal = signal<SensorModel[]>([]);
   public sensors = this.#sensorsSignal.asReadonly();

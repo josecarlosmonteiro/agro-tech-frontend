@@ -3,12 +3,13 @@ import { AlertModel } from '../../models/alert.model';
 import { Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { listUtil } from '../../utils/lists';
+import { baseUrl } from '../../constants/url';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AlertService {
-  private url = 'http://localhost:8080/alerts';
+  private url = `${baseUrl}/alerts`;
   private http = inject(HttpClient);
 
   #alerts = signal<AlertModel[]>([]);

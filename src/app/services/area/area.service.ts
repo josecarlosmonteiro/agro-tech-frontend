@@ -2,12 +2,13 @@ import { inject, Injectable, signal } from '@angular/core';
 import { AreaModel } from '../../models/area.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
+import { baseUrl } from '../../constants/url';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AreaService {
-  private readonly url: string = 'http://localhost:8080/areas';
+  private readonly url: string = `${baseUrl}/areas`;
   private readonly http = inject(HttpClient);
 
   #areasSignal = signal<AreaModel[]>([]);
