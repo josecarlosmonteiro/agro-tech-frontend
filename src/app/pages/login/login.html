@@ -1,5 +1,8 @@
 <div class="h-screen w-full flex justify-center items-center">
-  <form>
+  <form
+    [formGroup]="loginForm"
+    (ngSubmit)="submitLogin()"
+  >
     <div class="p-4 flex flex-col gap-4 rounded-lg shadow">
       <h2 class="text-xl">Entrar - Agro Tech</h2>
 
@@ -13,6 +16,7 @@
           id="email"
           type="email"
           required
+          formControlName="email"
         />
       </div>
 
@@ -25,6 +29,7 @@
         <input
           id="password"
           type="password"
+          formControlName="password"
           required
         />
       </div>

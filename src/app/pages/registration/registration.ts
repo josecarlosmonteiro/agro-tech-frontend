@@ -1,6 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NotificationsService } from '../../services/notifications/notifications.service';
+import { AuthService } from '../../services/auth.service';
+import { AuthRegistrationBody } from '../../models/auth.model';
 
 @Component({
   selector: 'app-registration',
@@ -9,6 +11,7 @@ import { NotificationsService } from '../../services/notifications/notifications
   styleUrl: './registration.css',
 })
 export class Registration {
+  private authService = inject(AuthService);
   private notificationService = inject(NotificationsService);
   private fb = inject(FormBuilder);
 
@@ -28,6 +31,6 @@ export class Registration {
     if (data.password !== data.confirmPassword)
       return this.notificationService.error({ title: 'As senhas precisam ser iguais' });
 
-    alert('Submit passou!');
+    this.authService.registration(data as AuthRegistrationBody).subscribe();
   }
 }
