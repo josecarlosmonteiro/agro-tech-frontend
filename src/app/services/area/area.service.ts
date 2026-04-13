@@ -45,10 +45,10 @@ export class AreaService {
     );
   }
 
-  update(data: AreaModel): Observable<HttpResponseModel<AreaModel>> {
-    return this.http.patch<HttpResponseModel<AreaModel>>(`${this.url}/${data.id}`, data).pipe(
+  update(data: AreaModel): Observable<AreaModel> {
+    return this.http.patch<AreaModel>(`${this.url}/${data.id}`, data).pipe(
       tap(result => {
-        this.onUpdateArea(result.content);
+        this.onUpdateArea(result);
       }),
     );
   }
