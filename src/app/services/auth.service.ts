@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { inject, Injectable, signal } from '@angular/core';
+import { computed, inject, Injectable, signal } from '@angular/core';
 import { AuthLoginBody, AuthRegistrationBody, AuthResponse } from '../models/auth.model';
 import { Observable, tap } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 import { baseUrl } from '../constants/url';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -13,11 +14,13 @@ export class AuthService {
   private http = inject(HttpClient);
 
   #isLogged = signal<boolean>(false);
-  public isLogged = this.#isLogged.asReadonly();
+  public isLogged = computed(() => this.#isLogged());
+  private router = inject(Router);
 
   private onLogin(token: string) {
     localStorage.setItem('token', token);
     this.#isLogged.set(true);
+    this.router.parseUrl('/areas');
   }
 
   verifyToken(): boolean {

@@ -11,7 +11,6 @@ import { ProtectedRoutesContainer } from './pages/protected-routes-container/pro
 export const routes: Routes = [
   { path: 'login', component: Login },
   { path: 'cadastro', component: Registration },
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
   {
     path: '',
     component: ProtectedRoutesContainer,
@@ -20,7 +19,9 @@ export const routes: Routes = [
       { path: 'areas', component: Areas },
       { path: 'sensores', component: Sensors },
       { path: 'alertas', component: Alerts },
-      { path: '**', component: NotFounded },
+      { path: '', redirectTo: 'areas', pathMatch: 'full' },
     ],
   },
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '**', component: NotFounded },
 ];
