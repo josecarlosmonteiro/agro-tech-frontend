@@ -24,13 +24,11 @@ export class AlertService {
     );
   }
 
-  update(newData: AlertModel): Observable<HttpResponseModel<AlertModel>> {
-    return this.http
-      .patch<HttpResponseModel<AlertModel>>(`${this.url}/${newData.id}`, newData)
-      .pipe(
-        tap(result => {
-          this.#alerts.update(state => listUtil.update(state, result.content, 'id'));
-        }),
-      );
+  update(newData: AlertModel): Observable<AlertModel> {
+    return this.http.patch<AlertModel>(`${this.url}/${newData.id}`, newData).pipe(
+      tap(result => {
+        this.#alerts.update(state => listUtil.update(state, result, 'id'));
+      }),
+    );
   }
 }

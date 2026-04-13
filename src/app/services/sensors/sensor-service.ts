@@ -38,10 +38,10 @@ export class SensorService {
     this.#sensorsSignal.update(previous => listUtil.update(previous, newSensor, 'id'));
   }
 
-  update(newData: Partial<SensorModel>): Observable<HttpResponseModel<SensorModel>> {
-    return this.http.patch<HttpResponseModel<SensorModel>>(`${this.url}/${newData.id}`, newData).pipe(
+  update(newData: Partial<SensorModel>): Observable<SensorModel> {
+    return this.http.patch<SensorModel>(`${this.url}/${newData.id}`, newData).pipe(
       tap(result => {
-        this.onUpdateSensor(result.content);
+        this.onUpdateSensor(result);
       }),
     );
   }
