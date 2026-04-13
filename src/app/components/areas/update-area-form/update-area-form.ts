@@ -15,7 +15,6 @@ export class UpdateAreaForm {
   private fb = inject(FormBuilder);
   updateForm = this.fb.group({
     name: [this.data.area.name, Validators.required],
-    location: [this.data.area.location, Validators.required],
     size: [this.data.area.size, Validators.min(0)],
   });
 

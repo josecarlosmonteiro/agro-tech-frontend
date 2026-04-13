@@ -4,6 +4,7 @@ import { Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { listUtil } from '../../utils/lists';
 import { baseUrl } from '../../constants/url';
+import { HttpResponseModel } from '../../models/http/http-response.model';
 
 @Injectable({
   providedIn: 'root',
@@ -15,19 +16,21 @@ export class AlertService {
   #alerts = signal<AlertModel[]>([]);
   alertsList = this.#alerts.asReadonly();
 
-  findAll(): Observable<AlertModel[]> {
-    return this.http.get<AlertModel[]>(this.url).pipe(
+  findAll(): Observable<HttpResponseModel<AlertModel[]>> {
+    return this.http.get<HttpResponseModel<AlertModel[]>>(this.url).pipe(
       tap(result => {
-        this.#alerts.set(result);
+        this.#alerts.set(result.content);
       }),
     );
   }
 
-  update(newData: AlertModel): Observable<AlertModel> {
-    return this.http.patch<AlertModel>(`${this.url}/${newData.id}`, newData).pipe(
-      tap(result => {
-        this.#alerts.update(state => listUtil.update(state, result, 'id'));
-      }),
-    );
+  update(newData: AlertModel): Observable<HttpResponseModel<AlertModel>> {
+    return this.http
+      .patch<HttpResponseModel<AlertModel>>(`${this.url}/${newData.id}`, newData)
+      .pipe(
+        tap(result => {
+          this.#alerts.update(state => listUtil.update(state, result.content, 'id'));
+        }),
+      );
   }
 }
