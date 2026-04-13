@@ -3,6 +3,7 @@ import { AreaModel } from '../../models/area.model';
 import { HttpClient } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
 import { baseUrl } from '../../constants/url';
+import { HttpResponseModel } from '../../models/http/http-response.model';
 
 @Injectable({
   providedIn: 'root',
@@ -28,10 +29,10 @@ export class AreaService {
     this.#areasSignal.update(current => current.filter(el => el.id !== areaId));
   }
 
-  findAll(): Observable<AreaModel[]> {
-    return this.http.get<AreaModel[]>(this.url).pipe(
+  findAll(): Observable<HttpResponseModel<AreaModel[]>> {
+    return this.http.get<HttpResponseModel<AreaModel[]>>(this.url).pipe(
       tap(data => {
-        this.#areasSignal.set(data);
+        this.#areasSignal.set(data.content);
       }),
     );
   }
