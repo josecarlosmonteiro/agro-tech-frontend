@@ -10,7 +10,7 @@
     <div class="p-4 rounded shadow bg-white text-gray-600 text-center">
       <div class="text-sm font-semibold">Área coberta</div>
       <div class="mt-2 text-xl font-semibold">
-        {{ areas().reduce((acc, area) => acc + area.size, 0) }}m²
+        {{ areas().length ? areas().reduce((acc, area) => acc + area.size, 0) : 0 }}m²
       </div>
     </div>
   </div>
