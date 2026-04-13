@@ -2,7 +2,6 @@ import { inject, Injectable, signal } from '@angular/core';
 import { SensorModel } from '../../models/sensor.model';
 import { Observable, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { NotificationsService } from '../notifications/notifications.service';
 import { listUtil } from '../../utils/lists';
 
 @Injectable({
@@ -11,15 +10,14 @@ import { listUtil } from '../../utils/lists';
 export class SensorService {
   private http = inject(HttpClient);
   private url = 'http://localhost:8080/sensors';
-  private notificationService = inject(NotificationsService);
 
   #sensorsSignal = signal<SensorModel[]>([]);
   public sensors = this.#sensorsSignal.asReadonly();
 
   findAll(): Observable<SensorModel[]> {
-    return this.http.get<SensorModel[]>(this.url).pipe(tap(result =>
-      this.#sensorsSignal.set(result)
-    ));
+    return this.http
+      .get<SensorModel[]>(this.url)
+      .pipe(tap(result => this.#sensorsSignal.set(result)));
   }
 
   onCreateSensor(newSensor: SensorModel) {
@@ -27,11 +25,11 @@ export class SensorService {
   }
 
   create(newSensor: Partial<SensorModel>): Observable<SensorModel> {
-    return this.http
-      .post<SensorModel>(this.url, newSensor)
-      .pipe(tap(result => {
-        this.onCreateSensor(result)
-      }));
+    return this.http.post<SensorModel>(this.url, newSensor).pipe(
+      tap(result => {
+        this.onCreateSensor(result);
+      }),
+    );
   }
 
   onUpdateSensor(newSensor: SensorModel) {
@@ -39,9 +37,11 @@ export class SensorService {
   }
 
   update(newData: Partial<SensorModel>): Observable<SensorModel> {
-    return this.http.patch<SensorModel>(`${this.url}/${newData.id}`, newData).pipe(tap(result => {
-      this.onUpdateSensor(result);
-    }));
+    return this.http.patch<SensorModel>(`${this.url}/${newData.id}`, newData).pipe(
+      tap(result => {
+        this.onUpdateSensor(result);
+      }),
+    );
   }
 
   onDeleteSensor(sensorId: string) {
@@ -49,8 +49,10 @@ export class SensorService {
   }
 
   delete(sensorId: string): Observable<void> {
-    return this.http.delete<void>(`${this.url}/${sensorId}`).pipe(tap(() => {
-      this.onDeleteSensor(sensorId);
-    }));
+    return this.http.delete<void>(`${this.url}/${sensorId}`).pipe(
+      tap(() => {
+        this.onDeleteSensor(sensorId);
+      }),
+    );
   }
 }

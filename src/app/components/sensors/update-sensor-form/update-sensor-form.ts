@@ -37,7 +37,7 @@ export class UpdateSensorForm implements OnInit {
   submitForm() {
     this.dialogRef.close({
       ...this.data,
-      ...this.formGroup.value
+      ...this.formGroup.value,
     });
   }
 }

@@ -1,13 +1,21 @@
 <div class="p-4 flex flex-col gap-2">
   <h2 class="text-lg">{{ data.title }}</h2>
-  <div> {{data.description}} </div>
+  <div>{{ data.description }}</div>
 
-  <br>
+  <br />
 
   <div class="flex justify-end gap-4">
-    <button class="text-gray-500" mat-dialog-close>Cancelar</button>
-    <button class="text-white" [className]="data.isDanger ? 'bg-red-500 text-white' : 'bg-blue-500'"
-      mat-dialog-close="true">
+    <button
+      class="text-gray-500"
+      mat-dialog-close
+    >
+      Cancelar
+    </button>
+    <button
+      class="text-white"
+      [className]="data.isDanger ? 'bg-red-500 text-white' : 'bg-blue-500'"
+      mat-dialog-close="true"
+    >
       Confirmar
     </button>
   </div>

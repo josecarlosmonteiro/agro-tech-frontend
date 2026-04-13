@@ -8,7 +8,6 @@ import { AreaService } from '../../../services/area/area.service';
   templateUrl: './remove-area-confirmation.html',
   styleUrl: './remove-area-confirmation.css',
 })
-
 export class RemoveAreaConfirmation {
   areaService = inject(AreaService);
   data = inject(MAT_DIALOG_DATA);

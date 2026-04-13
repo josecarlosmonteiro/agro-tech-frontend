@@ -1,0 +1,19 @@
+<div class="p-4 flex flex-col gap-4">
+  <div>
+    <div class="text-lg">{{ data.areaName }}</div>
+    <div class="font-semibold text-gray-500">{{ data.sensorName }}</div>
+  </div>
+
+  <div>{{ data.message }}</div>
+
+  <div>Notificado em: {{ data.triggeredAt }}</div>
+  <div>Resolvido em: {{ data.resolvedAt }}</div>
+
+  <div>
+    {{ data.justification }}
+  </div>
+
+  <div class="flex justify-end">
+    <button class="bg-blue-500 text-white" mat-dialog-close>OK</button>
+  </div>
+</div>

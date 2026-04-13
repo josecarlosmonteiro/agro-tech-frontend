@@ -15,33 +15,43 @@
     </div>
   </div>
 
-  <br>
+  <br />
 
   <div class="flex justify-between items-center">
     <h2 class="text-2xl">Áreas cadastradas</h2>
-    <button type="button" class="bg-blue-500 text-white" (click)="openNewAreaFormDialog()">Add Área</button>
+    <button
+      type="button"
+      class="bg-blue-500 text-white"
+      (click)="openNewAreaFormDialog()"
+    >
+      Add Área
+    </button>
   </div>
 
   <div class="p-4 rounded bg-gray-200">
     <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
-      @for(area of areas(); track area.id) {
-      <div class="p-4 bg-white rounded shadow">
-        <div class="font-semibold text-md">{{ area.name }}</div>
-        <div class="mt-2 flex justify-between items-center font-semibold text-gray-500">
-          <div>
-            {{ area.size }}m²
+      @for (area of areas(); track area.id) {
+        <div class="p-4 bg-white rounded shadow">
+          <div class="font-semibold text-md">{{ area.name }}</div>
+          <div class="mt-2 flex justify-between items-center font-semibold text-gray-500">
+            <div>{{ area.size }}m²</div>
+          </div>
+
+          <div class="mt-4 flex gap-4">
+            <button
+              class="w-full p-2 px-4 rounded-full text-red-500"
+              (click)="openRemoveConfirmationAreaDialog(area)"
+            >
+              Remover
+            </button>
+            <button
+              class="w-full p-2 px-4 rounded-full bg-blue-500 text-white"
+              (click)="openUpdateAreaDialog(area)"
+            >
+              Editar
+            </button>
           </div>
         </div>
-
-        <div class="mt-4 flex gap-4">
-          <button class="w-full p-2 px-4 rounded-full text-red-500" (click)="openRemoveConfirmationAreaDialog(area)">
-            Remover
-          </button>
-          <button class="w-full p-2 px-4 rounded-full bg-blue-500 text-white" (click)="openUpdateAreaDialog(area)">
-            Editar
-          </button>
-        </div>
-      </div>
       }
     </div>
   </div>

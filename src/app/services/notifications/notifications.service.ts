@@ -14,18 +14,20 @@ export class NotificationsService {
   success(data: TNotificationDialog) {
     this.dialog.open(SuccessDialog, {
       data,
-    })
+    });
   }
 
   error(data: TNotificationDialog) {
     this.dialog.open(ErrorDialog, {
       data,
-    })
+    });
   }
 
   confirmation(data: TConfirmationDialog) {
-    return this.dialog.open(ConfirmationDialog, {
-      data,
-    }).afterClosed()
+    return this.dialog
+      .open(ConfirmationDialog, {
+        data,
+      })
+      .afterClosed();
   }
 }

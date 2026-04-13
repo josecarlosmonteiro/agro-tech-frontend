@@ -7,7 +7,6 @@ import { listUtil } from '../../utils/lists';
 @Injectable({
   providedIn: 'root',
 })
-
 export class AlertService {
   private url = 'http://localhost:8080/alerts';
   private http = inject(HttpClient);
@@ -16,18 +15,18 @@ export class AlertService {
   alertsList = this.#alerts.asReadonly();
 
   findAll(): Observable<AlertModel[]> {
-    return this.http
-      .get<AlertModel[]>(this.url)
-      .pipe(tap(result => {
+    return this.http.get<AlertModel[]>(this.url).pipe(
+      tap(result => {
         this.#alerts.set(result);
-      }));
+      }),
+    );
   }
 
   update(newData: AlertModel): Observable<AlertModel> {
-    return this.http
-      .patch<AlertModel>(`${this.url}/${newData.id}`, newData)
-      .pipe(tap(result => {
+    return this.http.patch<AlertModel>(`${this.url}/${newData.id}`, newData).pipe(
+      tap(result => {
         this.#alerts.update(state => listUtil.update(state, result, 'id'));
-      }))
+      }),
+    );
   }
 }

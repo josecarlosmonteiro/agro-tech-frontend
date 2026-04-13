@@ -1,6 +1,6 @@
 import { Component, input } from '@angular/core';
 import { AreaModel } from '../../../models/area.model';
-import { MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-dashboard-area-card',

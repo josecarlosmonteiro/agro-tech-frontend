@@ -1,0 +1,51 @@
+<div class="p-4">
+  <h2 class="text-xl">Concluir alerta</h2>
+  <br />
+
+  <form
+    [formGroup]="formGroup"
+    (ngSubmit)="submitForm()"
+  >
+    <div class="grid grid-cols-2 gap-2">
+      <div class="col-span-2 text-lg">{{ data.areaName }}, sensor {{ data.sensorName }}.</div>
+      <div class="mt-2 col-span-2">{{ data.message }}</div>
+      <div class="col-span-2 flex justify-between gap-8">
+        <div class="">Disparado em: {{ data.triggeredAt | date: 'short' : 'BRL' }}</div>
+        <div class="">Status {{ data.status }}</div>
+      </div>
+
+      <div class="col-span-2 mt-4 flex flex-col gap-1">
+        <label
+          for="justification"
+          class="text-sm italic font-semibold"
+        >
+          Justificativa
+        </label>
+        <textarea
+          name="justification"
+          id="justification"
+          formControlName="justification"
+          [rows]="5"
+        ></textarea>
+      </div>
+
+      <div class="col-span-2 mt-2 flex justify-end gap-4">
+        <button
+          class="text-gray-500"
+          type="button"
+          [mat-dialog-close]="false"
+        >
+          Cancelar
+        </button>
+
+        <button
+          class="bg-blue-500 text-white"
+          type="submit"
+          [disabled]="!formGroup.valid"
+        >
+          Confirmar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

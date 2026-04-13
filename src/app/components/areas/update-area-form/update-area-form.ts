@@ -20,12 +20,11 @@ export class UpdateAreaForm {
   });
 
   onSubmit() {
-    if (!this.updateForm.valid)
-      return alert("Preencha os campos corretamente!");
+    if (!this.updateForm.valid) return alert('Preencha os campos corretamente!');
 
     this.dialogRef.close({
       ...this.data.area,
-      ...this.updateForm.value
+      ...this.updateForm.value,
     });
   }
 }
